@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>All tasks</h1>
+
+	<table class="centered striped">
+        <thead>
+          <tr>
+              <th>ID</th>
+              <th>Task Title</th>
+              <th>Status</th>
+              <th>Date Created</th>
+              <th>Actions</th>
+          </tr>
+        </thead>
+
+        <tbody>    
+			{% for i in tasks %}
+			<tr> 
+				<td>{{i.id}}</td>
+				<td>{{i.title}}</td>
+				<td>
+					{% if i.status %}
+						<i class="material-icons green-text" title="Done">check_circle</i>
+					{% else %}
+						<i class="material-icons red-text" title="Pending">close</i>
+					{% endif %}
+				</td>
+				<td>{{i.date_created}}</td>
+				<td>
+					<a href="/update/{{i.id}}/"><i class="material-icons" title="Update">create</i></a> &nbsp;&nbsp;&nbsp;
+					<a href="/delete/{{i.id}}/"><i class="material-icons red-text" title="Delete">delete_forever</i></a>
+				</td>
+			</tr>
+			{% endfor %}        
+        </tbody>
+    </table>
+
+{% endblock %}
